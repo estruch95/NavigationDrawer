@@ -18,6 +18,7 @@
     -->
     <!-- Contenido Principal -->
     <include layout="@layout/main_content" />
+    <include layout="@layout/toolbar"/>
 
     <!-- Menú Deslizante -->
     <android.support.design.widget.NavigationView
