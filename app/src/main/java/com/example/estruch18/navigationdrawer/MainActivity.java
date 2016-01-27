@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setupDrawerContent((NavigationView)findViewById(R.id.nav_view));
+        drawerIcon();
     }
 
     @Override
@@ -81,6 +82,38 @@ public class MainActivity extends AppCompatActivity {
         setTitle(title); // Setear título actual
     }
 
+    public void drawerIcon(){
+
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                R.string.drawer_open,
+                R.string.drawer_close){
+
+            public void onDrawerClosed(View view) {
+                getSupportActionBar().setTitle("Navigation Drawer");
+                invalidateOptionsMenu();
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                getSupportActionBar().setTitle("Menu");
+                invalidateOptionsMenu();
+            }
+        };
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        drawerLayout.setDrawerListener(mDrawerToggle);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -88,6 +121,10 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        //Si s'ha polsat L'icona de l'actionBar, tornarem true, per indicar que hem gestionat l'event
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
         //noinspection SimplifiableIfStatement
 
 
