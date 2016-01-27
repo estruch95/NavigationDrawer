@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                         menuItem.setChecked(true);
                         // Crear nuevo fragmento
                         String title = menuItem.getTitle().toString();
+                        getSupportActionBar().setTitle(title);
                         selectItem(title);
                         Toast.makeText(getApplicationContext(), "Aqui", Toast.LENGTH_SHORT).show();
                         return true;
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 R.string.drawer_close){
 
             public void onDrawerClosed(View view) {
-                getSupportActionBar().setTitle("Navigation Drawer");
+                //getSupportActionBar().setTitle("Navigation Drawer");
                 invalidateOptionsMenu();
             }
 
